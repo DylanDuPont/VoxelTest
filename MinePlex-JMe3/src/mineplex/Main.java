@@ -1,6 +1,7 @@
 package mineplex;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 import com.jme3.app.SimpleApplication;
 import com.jme3.input.KeyInput;
@@ -26,6 +27,8 @@ public class Main extends SimpleApplication {
 	
 	public ArrayList<String> keys;
 	public TileRegistry tileRegistry;
+	
+	public Random r;
 	
     public static void main(String[] args) {
     	AppSettings settings = new AppSettings(true);
@@ -53,7 +56,7 @@ public class Main extends SimpleApplication {
     	tileRegistry.registerTile(new TileWater(0, 0, 0, overworld));
     	tileRegistry.registerTile(new TileSand(0, 0, 0, overworld));
     	
-        overworld.generateLevel();
+        overworld.generateLevel(123213);
         
         /*Spatial batcave = assetManager.loadModel("Models/batcave3DS/batcave.j3o");
         Material mat_default = new Material( 

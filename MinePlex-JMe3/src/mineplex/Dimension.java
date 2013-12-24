@@ -2,6 +2,7 @@ package mineplex;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.Random;
 
 import com.jme3.math.Vector3f;
 import com.turtlesort.hmapgen.HeightMapGenerator;
@@ -83,7 +84,9 @@ public class Dimension {
 		tile = null;
 	}
 	
-	public void generateLevel() {
+	public void generateLevel(long seed) {
+		Main.getInstance().r = new Random(seed);
+		
 		System.out.println("Generating...");
 
 		System.out.println("Creating heightmap...");
@@ -95,7 +98,7 @@ public class Dimension {
 		System.out.println("Creating world using heightmap...");
 
 		int intensity = 1; //anything from 1-16
-        int ocean_level = 4;
+        int ocean_level = 6;
 		
 		System.out.println("Placing surface...");
         for(int i = 0; i < data.length;i++) {
@@ -104,7 +107,7 @@ public class Dimension {
                 System.out.print(height);
                 System.out.print(",");
             	
-                if(height == ocean_level)
+                if(height <= ocean_level)
                 	placeBlock(new TileSand(i, height, j, this));
                 else
                 	placeBlock(new TileGrass(i, height, j, this));
